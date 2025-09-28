@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     left: 15,
                     right: 20,
                     top: 25,
-                    bottom: 10
+                    bottom: 20
                 }
             },
             plugins: {
