@@ -21,9 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
         { province: "NUSA TENGGARA BARAT", value: 2.74 }, { province: "BANTEN", value: 2.55 }
     ];
 
-    let AJG = provincialData;
-    AJG.style.marginTop = 50px;
-
     const foodProductionData = {
         sagu: {
             labels: ['2018', '2019', '2020', '2021'],
@@ -72,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 maintainAspectRatio: false,
                 layout: {
                     padding: {
-                        left: 15,
+                        left: 100,
                         right: 15,
                         top: 11,
                         bottom: 11
