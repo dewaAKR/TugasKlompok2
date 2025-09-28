@@ -69,10 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
             maintainAspectRatio: false,
             layout: {
                 padding: {
-                    left: 40,
-                    right: 25,
-                    top: 7,
-                    bottom: 7
+                    left: 15,
+                    right: 15,
+                    top: 11,
+                    bottom: 11
                 }
             },
             plugins: {
@@ -97,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 y: {
                     ticks: {
-                        align: start,
                         autoSkip: false,
                         font: { size: 14, weight: 'bold' },  // Perbesar dan tebalkan font label
                         maxRotation: 0,
