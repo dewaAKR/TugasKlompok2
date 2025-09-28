@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
     menuBtn.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
     });
-    function createProvincialChart(data) {
+function createProvincialChart(data) {
     const ctx = document.getElementById('provincialHungerChart').getContext('2d');
     if (provincialChart) provincialChart.destroy();
 
@@ -248,5 +248,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 }
-
 });
