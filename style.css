@@ -13,3 +13,26 @@ body {
     background-color: #FFF7ED;
     color: #D97706;
 }
+
+@media (max-width: 768px) {
+    header nav .hidden.md\\:flex {
+        display: none !important;
+    }
+    #mobile-menu {
+        display: block !important;
+    }
+
+    .chart-container {
+        height: 400px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .chart-container {
+        height: 450px;
+    }
+}
+
+.chart-container canvas {
+    max-width: 100%;
+}
