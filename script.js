@@ -69,9 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
             maintainAspectRatio: false,
             layout: {
                 padding: {
-                    left: 10,
+                    left: 15,
                     right: 20,
-                    top: 10,
+                    top: 15,
                     bottom: 10
                 }
             },
