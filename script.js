@@ -81,7 +81,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     y: {
                         ticks: {
                             autoSkip: false,
-                            font: { size: 10 }
+                            font: { size: 14 },  // Perbesar ukuran font label provinsi
+                            maxRotation: 0,
+                            minRotation: 0,
+                            callback: function(value) {
+                                // Membatasi panjang label agar tidak terlalu panjang
+                                const label = this.getLabelForValue(value);
+                                if (label.length > 20) {
+                                    return label.substring(0, 17) + '...';
+                                }
+                                return label;
+                            }
                         }
                     }
                 }
@@ -180,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initialize charts
+    // Initialize food production charts
     createFoodProductionChart('sagu');
     createFoodProductionChart('singkong');
     createFoodProductionChart('jagung');
@@ -191,61 +201,4 @@ document.addEventListener('DOMContentLoaded', () => {
     menuBtn.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
     });
-function createProvincialChart(data) {
-    const ctx = document.getElementById('provincialHungerChart').getContext('2d');
-    if (provincialChart) provincialChart.destroy();
-
-    provincialChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: data.map(d => d.province),
-            datasets: [{
-                label: 'Prevalensi Ketidakcukupan Konsumsi Pangan (%)',
-                data: data.map(d => d.value),
-                backgroundColor: data.map(d =>
-                    d.value > 15 ? '#b91c1c' : (d.value > 10 ? '#f59e0b' : '#16a34a')
-                ),
-                borderColor: data.map(d =>
-                    d.value > 15 ? '#991b1b' : (d.value > 10 ? '#d97706' : '#15803d')
-                ),
-                borderWidth: 1
-            }]
-        },
-        options: {
-            indexAxis: 'y',
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    callbacks: {
-                        label: context => ` ${context.dataset.label}: ${context.raw}%`
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    title: { display: true, text: 'Persentase (%)' }
-                },
-                y: {
-                    ticks: {
-                        autoSkip: false,
-                        font: { size: 14 },  // Perbesar ukuran font label provinsi
-                        maxRotation: 0,
-                        minRotation: 0,
-                        callback: function(value) {
-                            // Membatasi panjang label agar tidak terlalu panjang
-                            const label = this.getLabelForValue(value);
-                            if (label.length > 20) {
-                                return label.substring(0, 17) + '...';
-                            }
-                            return label;
-                        }
-                    }
-                }
-            }
-        }
-    });
-}
 });
