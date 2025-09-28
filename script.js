@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
             maintainAspectRatio: false,
             layout: {
                 padding: {
-                    left: 15,
+                    left: 40,
                     right: 25,
                     top: 7,
                     bottom: 7
@@ -97,11 +97,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 y: {
                     ticks: {
+                        align: start,
                         autoSkip: false,
                         font: { size: 14, weight: 'bold' },  // Perbesar dan tebalkan font label
                         maxRotation: 0,
                         minRotation: 0,
-                        padding: 5,
+                        padding: 10,
                         callback: function(value) {
                             const label = this.getLabelForValue(value);
                             if (label.length > 20) {
