@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const provincialData = [
-        { province: "PAPUA TENGAH\n", value: 37.69 }, { province: "MALUKU", value: 31.66 },
+        { province: "PAPUA TENGAH", value: 37.69 }, { province: "MALUKU", value: 31.66 },
         { province: "PAPUA SELATAN", value: 29.26 }, { province: "MALUKU UTARA", value: 28.44 },
         { province: "PAPUA PEGUNUNGAN", value: 27.26 }, { province: "PAPUA", value: 26.03 },
         { province: "PAPUA BARAT", value: 21.91 }, { province: "PAPUA BARAT DAYA", value: 20.53 },
