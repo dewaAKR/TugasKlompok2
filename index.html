@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelaparan di Indonesia: Data dan Solusi SDGs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-[#6A5F5B]">
+                🌾 Zero Hunger <span class="text-[#E7A04D]">Indonesia</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#problem" class="nav-link text-gray-600">Gambaran Masalah</a>
+                <a href="#data" class="nav-link text-gray-600">Data Provinsi</a>
+                <a href="#solution" class="nav-link text-gray-600">Solusi & SDGs</a>
+                <a href="#action" class="nav-link text-gray-600">Langkah ke Depan</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 space-y-2">
+            <a href="#problem" class="block nav-link text-gray-600">Gambaran Masalah</a>
+            <a href="#data" class="block nav-link text-gray-600">Data Provinsi</a>
+            <a href="#solution" class="block nav-link text-gray-600">Solusi & SDGs</a>
+            <a href="#action" class="block nav-link text-gray-600">Langkah ke Depan</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="py-20 bg-amber-50">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-[#6A5F5B] mb-4">Mengurai Masalah Kelaparan di Indonesia</h1>
+                <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">Sebuah Tinjauan Interaktif terhadap Data, Tantangan, dan Solusi Berkelanjutan untuk Mencapai *Zero Hunger* Sesuai Target SDGs.</p>
+            </div>
+        </section>
+
+        <section id="problem" class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-[#6A5F5B]">Skala Permasalahan Nasional</h2>
+                    <p class="mt-2 text-gray-600 max-w-2xl mx-auto">Memahami definisi kelaparan dan melihat potret Indonesia di tingkat global adalah langkah pertama untuk mengatasi masalah ini secara efektif.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-3 text-amber-700">Apa itu Kelaparan?</h3>
+                        <p class="text-gray-600 mb-4">Kelaparan adalah kondisi ketika tubuh kekurangan asupan kalori yang cukup untuk menjalankan aktivitas dan hidup sehat. Ini bukan sekadar masalah individu, tetapi sering kali merupakan krisis yang dialami sekelompok besar orang akibat faktor sistemik.</p>
+                        <div class="space-y-2 text-sm text-gray-700">
+                           <p><span class="font-semibold text-amber-800">Kemiskinan:</span> Ketidakmampuan membeli makanan yang cukup.</p>
+                           <p><span class="font-semibold text-amber-800">Konflik & Politik:</span> Gangguan pada produksi dan distribusi pangan.</p>
+                           <p><span class="font-semibold text-amber-800">Iklim & Bencana:</span> Kekeringan atau banjir yang menyebabkan gagal panen.</p>
+                           <p><span class="font-semibold text-amber-800">Distribusi Tidak Merata:</span> Kesenjangan akses pangan antar wilayah.</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                         <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                            <h4 class="text-lg font-medium text-amber-700">Skor GHI 2024</h4>
+                            <p class="text-4xl font-bold text-[#6A5F5B] mt-2">16.9</p>
+                            <p class="text-sm text-gray-500 mt-1">Level Moderat</p>
+                        </div>
+                         <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                            <h4 class="text-lg font-medium text-amber-700">Peringkat Global</h4>
+                            <p class="text-4xl font-bold text-[#6A5F5B] mt-2">77<span class="text-2xl">/127</span></p>
+                            <p class="text-sm text-gray-500 mt-1">dari 127 Negara</p>
+                        </div>
+                         <div class="bg-white col-span-2 p-6 rounded-lg shadow-md text-center">
+                            <h4 class="text-lg font-medium text-amber-700">Penduduk Kurang Gizi</h4>
+                            <p class="text-4xl font-bold text-[#6A5F5B] mt-2">7.2%</p>
+                            <p class="text-sm text-gray-500 mt-1">dari Total Populasi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="data" class="py-16 bg-amber-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#6A5F5B]">Peta Kelaparan di 38 Provinsi</h2>
+                    <p class="mt-2 text-gray-600 max-w-3xl mx-auto">Data Prevalensi Ketidakcukupan Konsumsi Pangan (PoU) tahun 2024 dari BPS menunjukkan disparitas yang signifikan antar wilayah. Gunakan tombol di bawah untuk mengurutkan data dan melihat provinsi mana yang paling rentan.</p>
+                </div>
+                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+                    <div class="flex flex-wrap justify-center gap-2 mb-4">
+                        <button id="sort-desc" class="btn bg-amber-600 text-white px-4 py-2 rounded-md hover:bg-amber-700">Tertinggi ke Terendah</button>
+                        <button id="sort-asc" class="btn bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300">Terendah ke Tertinggi</button>
+                        <button id="sort-alpha" class="btn bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300">Urutkan Alfabetis</button>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="provincialHungerChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-[#6A5F5B]">Solusi dan Komitmen SDGs</h2>
+                    <p class="mt-2 text-gray-600 max-w-3xl mx-auto">Indonesia berkomitmen mencapai Tujuan Pembangunan Berkelanjutan (SDGs) ke-2: *Zero Hunger*. Salah satu strategi kuncinya adalah diversifikasi pangan lokal.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md mb-12">
+                    <h3 class="text-xl font-semibold mb-4 text-center text-amber-700">Tiga Pilar Aksi Pemerintah</h3>
+                    <div class="grid md:grid-cols-3 gap-8 text-center">
+                        <div>
+                            <div class="text-4xl mb-2">🚜</div>
+                            <h4 class="font-bold text-lg">Peningkatan Produksi</h4>
+                            <p class="text-sm text-gray-600">Mendukung petani dengan inovasi teknologi untuk meningkatkan hasil panen pangan strategis.</p>
+                        </div>
+                        <div>
+                            <div class="text-4xl mb-2">🥗</div>
+                            <h4 class="font-bold text-lg">Perbaikan Gizi</h4>
+                            <p class="text-sm text-gray-600">Edukasi gizi seimbang dan program pemberian makanan tambahan bagi kelompok rentan.</p>
+                        </div>
+                        <div>
+                            <div class="text-4xl mb-2">💰</div>
+                            <h4 class="font-bold text-lg">Pengurangan Kemiskinan</h4>
+                            <p class="text-sm text-gray-600">Program pemberdayaan ekonomi dan bantuan sosial untuk meningkatkan daya beli masyarakat.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-center mb-2 text-[#6A5F5B]">Kekuatan Pangan Lokal sebagai Solusi</h3>
+                    <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">Diversifikasi pangan adalah kunci untuk mengurangi ketergantungan pada beras dan impor. Jelajahi potensi tiga komoditas pangan lokal unggulan di bawah ini.</p>
+                    <div class="flex justify-center border-b mb-6">
+                        <button data-target="sagu" class="tab active text-lg font-medium px-6 py-3 border-b-2">Sagu</button>
+                        <button data-target="singkong" class="tab text-lg font-medium px-6 py-3 border-b-2 border-transparent text-gray-500">Singkong</button>
+                        <button data-target="jagung" class="tab text-lg font-medium px-6 py-3 border-b-2 border-transparent text-gray-500">Jagung</button>
+                    </div>
+
+                    <div id="sagu" class="tab-panel grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                           <h4 class="text-xl font-bold mb-3 text-amber-800">Sagu: Raksasa Pati dari Timur</h4>
+                           <p class="text-gray-600 mb-4">Indonesia memiliki 60% potensi sagu dunia. Produktivitas patinya bisa mencapai 25 ton per hektar per tahun, jauh melampaui tanaman penghasil pati lainnya. Ini adalah sumber karbohidrat yang sangat tangguh dan berkelanjutan.</p>
+                           <ul class="list-disc list-inside text-gray-600 space-y-1">
+                               <li>Kandungan per 100g: 357 kalori, 85.9g karbohidrat.</li>
+                               <li>Produksi utama: Riau dan Papua.</li>
+                               <li>Dapat diolah menjadi tepung, mi, dan bioetanol.</li>
+                           </ul>
+                        </div>
+                        <div class="production-chart-container">
+                            <canvas id="saguChart"></canvas>
+                        </div>
+                    </div>
+                    <div id="singkong" class="tab-panel hidden grid md:grid-cols-2 gap-8 items-center">
+                         <div>
+                           <h4 class="text-xl font-bold mb-3 text-amber-800">Singkong: Umbi Serbaguna</h4>
+                           <p class="text-gray-600 mb-4">Meski sering dianggap inferior, singkong adalah panganan pokok di banyak daerah dan merupakan sumber energi yang kaya nutrisi dan serat. Produksinya di Indonesia terus menunjukkan tren peningkatan yang positif.</p>
+                           <ul class="list-disc list-inside text-gray-600 space-y-1">
+                               <li>Kandungan per 100g: 150 kalori, 38g karbohidrat, vitamin C, dan folat.</li>
+                               <li>Diolah menjadi tiwul dan rasi sebagai makanan pokok.</li>
+                               <li>Mengandung antioksidan polifenol dan flavonoid.</li>
+                           </ul>
+                        </div>
+                        <div class="production-chart-container">
+                            <canvas id="singkongChart"></canvas>
+                        </div>
+                    </div>
+                    <div id="jagung" class="tab-panel hidden grid md:grid-cols-2 gap-8 items-center">
+                         <div>
+                           <h4 class="text-xl font-bold mb-3 text-amber-800">Jagung: Emas dari Ladang</h4>
+                           <p class="text-gray-600 mb-4">Sebagai makanan pokok di Jawa dan Sulawesi, jagung bukan hanya sumber karbohidrat tetapi juga protein penting. Jagung kaya akan serat pangan, vitamin, dan mineral yang dibutuhkan tubuh.</p>
+                           <ul class="list-disc list-inside text-gray-600 space-y-1">
+                               <li>Kaya akan betakaroten (provitamin A) dan mineral.</li>
+                               <li>Dapat mensubstitusi terigu hingga 25% dalam pembuatan roti.</li>
+                               <li>Produksi nasional terus meningkat setiap tahunnya.</li>
+                           </ul>
+                        </div>
+                        <div class="production-chart-container">
+                            <canvas id="jagungChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="action" class="py-16 bg-amber-50">
+             <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-[#6A5F5B]">Saran dan Langkah ke Depan</h2>
+                    <p class="mt-2 text-gray-600">Mengatasi kelaparan membutuhkan kerja sama dari semua pihak, baik pemerintah maupun masyarakat.</p>
+                </div>
+                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-3 text-amber-700">Untuk Pemerintah</h3>
+                        <ul class="space-y-3 text-gray-600 list-decimal list-inside">
+                            <li>Meningkatkan efisiensi dan jangkauan kebijakan diversifikasi pangan.</li>
+                            <li>Mengadakan sosialisasi massal tentang pentingnya variasi makanan.</li>
+                            <li>Menyediakan lahan dan dukungan teknologi bagi petani pangan lokal.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-3 text-amber-700">Untuk Masyarakat</h3>
+                        <ul class="space-y-3 text-gray-600 list-decimal list-inside">
+                            <li>Mulai memvariasikan makanan pokok, tidak hanya bergantung pada beras.</li>
+                            <li>Mencoba resep-resep baru berbasis jagung, singkong, atau sagu.</li>
+                            <li>Mendukung produk petani lokal dengan membeli hasil panen mereka.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#4F4A45] text-white py-8">
+        <div class="container mx-auto px-6 text-center text-sm">
+            <p>Dibuat berdasarkan "MAKALAH KASUS KELAParan DI INDONESIA" oleh Mahasiswa Universitas Muhammadiyah Malang.</p>
+            <p class="mt-2 opacity-70">Aplikasi Web Interaktif ini bertujuan untuk visualisasi data dan edukasi publik.</p>
+        </div>
+    </footer>
+
+<script src="script.js"></script>
+</body>
+</html>
