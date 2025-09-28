@@ -42,82 +42,80 @@ document.addEventListener('DOMContentLoaded', () => {
     let provincialChart;
 
     function createProvincialChart(data) {
-    const ctx = document.getElementById('provincialHungerChart').getContext('2d');
-    if (provincialChart) provincialChart.destroy();
+        const ctx = document.getElementById('provincialHungerChart').getContext('2d');
+        if (provincialChart) provincialChart.destroy();
 
-    provincialChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: data.map(d => d.province),
-            datasets: [{
-                label: 'Prevalensi Ketidakcukupan Konsumsi Pangan (%)',
-                data: data.map(d => d.value),
-                backgroundColor: data.map(d =>
-                    d.value > 15 ? '#b91c1c' : (d.value > 10 ? '#f59e0b' : '#16a34a')
-                ),
-                borderColor: data.map(d =>
-                    d.value > 15 ? '#991b1b' : (d.value > 10 ? '#d97706' : '#15803d')
-                ),
-                borderWidth: 1,
-                barPercentage: 0.8,  // Mengatur lebar bar agar tidak terlalu tebal
-                categoryPercentage: 0.9
-            }]
-        },
-        options: {
-            indexAxis: 'y',
-            responsive: true,
-            maintainAspectRatio: false,
-            layout: {
-                padding: {
-                    left: 15,
-                    right: 15,
-                    top: 11,
-                    bottom: 11
-                }
+        provincialChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data.map(d => d.province),
+                datasets: [{
+                    label: 'Prevalensi Ketidakcukupan Konsumsi Pangan (%)',
+                    data: data.map(d => d.value),
+                    backgroundColor: data.map(d =>
+                        d.value > 15 ? '#b91c1c' : (d.value > 10 ? '#f59e0b' : '#16a34a')
+                    ),
+                    borderColor: data.map(d =>
+                        d.value > 15 ? '#991b1b' : (d.value > 10 ? '#d97706' : '#15803d')
+                    ),
+                    borderWidth: 1,
+                    barPercentage: 0.8,
+                    categoryPercentage: 0.9
+                }]
             },
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    callbacks: {
-                        label: context => ` ${context.dataset.label}: ${context.raw}%`
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    title: { display: true, text: 'Persentase (%)' },
-                    ticks: {
-                        font: {
-                            size: 14
-                        },
-                        stepSize: 5,
-                        maxTicksLimit: 10
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: {
+                    padding: {
+                        left: 15,
+                        right: 15,
+                        top: 11,
+                        bottom: 11
                     }
                 },
-                y: {
-                    ticks: {
-                        autoSkip: false,
-                        font: { size: 14, weight: 'bold' },  // Perbesar dan tebalkan font label
-                        maxRotation: 0,
-                        minRotation: 0,
-                        padding: 10,
-                        callback: function(value) {
-                            const label = this.getLabelForValue(value);
-                            if (label.length > 20) {
-                                return label.substring(0, 17) + '...';
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: context => ` ${context.dataset.label}: ${context.raw}%`
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Persentase (%)' },
+                        ticks: {
+                            font: { size: 14 },
+                            stepSize: 5,
+                            maxTicksLimit: 10
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            autoSkip: false,
+                            font: { size: 14, weight: 'bold' },
+                            maxRotation: 0,
+                            minRotation: 0,
+                            padding: 10,
+                            callback: function(value) {
+                                const label = this.getLabelForValue(value);
+                                if (label.length > 20) {
+                                    return label.substring(0, 17) + '...';
+                                }
+                                return label;
                             }
-                            return label;
                         }
                     }
                 }
             }
-        }
-    });
-}
-
+        });
+    }
 
     function updateChartData(sortedData) {
+        if (!provincialChart) return;
         provincialChart.data.labels = sortedData.map(d => d.province);
         provincialChart.data.datasets[0].data = sortedData.map(d => d.value);
         provincialChart.data.datasets[0].backgroundColor = sortedData.map(d =>
@@ -145,9 +143,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Food production charts
     const foodCharts = {};
     function createFoodProductionChart(type) {
+        const canvas = document.getElementById(`${type}Chart`);
+        if (!canvas) return; // Pastikan elemen canvas ada
         if (foodCharts[type]) return;
 
-        const ctx = document.getElementById(`${type}Chart`).getContext('2d');
+        const ctx = canvas.getContext('2d');
         const chartData = foodProductionData[type];
 
         foodCharts[type] = new Chart(ctx, {
@@ -201,17 +201,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const target = tab.getAttribute('data-target');
             tabPanels.forEach(panel => {
-                panel.id === target
-                    ? panel.classList.remove('hidden')
-                    : panel.classList.add('hidden');
+                if (panel.id === target) {
+                    panel.classList.remove('hidden');
+                    // Create chart if not created yet
+                    createFoodProductionChart(target);
+                } else {
+                    panel.classList.add('hidden');
+                }
             });
         });
     });
 
-    // Initialize food production charts
+    // Initialize food production charts only for the active tab (sagu)
     createFoodProductionChart('sagu');
-    createFoodProductionChart('singkong');
-    createFoodProductionChart('jagung');
 
     // Mobile menu toggle
     const menuBtn = document.getElementById('menu-btn');
