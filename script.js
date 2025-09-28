@@ -192,3 +192,26 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenu.classList.toggle('hidden');
     });
 });
+
+scales: {
+    x: {
+        beginAtZero: true,
+        title: { display: true, text: 'Persentase (%)' }
+    },
+    y: {
+        ticks: {
+            autoSkip: false,
+            font: { size: 14 },  // Perbesar ukuran font label provinsi
+            maxRotation: 0,
+            minRotation: 0,
+            callback: function(value) {
+                // Membatasi panjang label agar tidak terlalu panjang
+                const label = this.getLabelForValue(value);
+                if (label.length > 20) {
+                    return label.substring(0, 17) + '...';
+                }
+                return label;
+            }
+        }
+    }
+}
