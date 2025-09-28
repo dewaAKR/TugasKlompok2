@@ -42,62 +42,80 @@ document.addEventListener('DOMContentLoaded', () => {
     let provincialChart;
 
     function createProvincialChart(data) {
-        const ctx = document.getElementById('provincialHungerChart').getContext('2d');
-        if (provincialChart) provincialChart.destroy();
+    const ctx = document.getElementById('provincialHungerChart').getContext('2d');
+    if (provincialChart) provincialChart.destroy();
 
-        provincialChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: data.map(d => d.province),
-                datasets: [{
-                    label: 'Prevalensi Ketidakcukupan Konsumsi Pangan (%)',
-                    data: data.map(d => d.value),
-                    backgroundColor: data.map(d =>
-                        d.value > 15 ? '#b91c1c' : (d.value > 10 ? '#f59e0b' : '#16a34a')
-                    ),
-                    borderColor: data.map(d =>
-                        d.value > 15 ? '#991b1b' : (d.value > 10 ? '#d97706' : '#15803d')
-                    ),
-                    borderWidth: 1
-                }]
+    provincialChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.map(d => d.province),
+            datasets: [{
+                label: 'Prevalensi Ketidakcukupan Konsumsi Pangan (%)',
+                data: data.map(d => d.value),
+                backgroundColor: data.map(d =>
+                    d.value > 15 ? '#b91c1c' : (d.value > 10 ? '#f59e0b' : '#16a34a')
+                ),
+                borderColor: data.map(d =>
+                    d.value > 15 ? '#991b1b' : (d.value > 10 ? '#d97706' : '#15803d')
+                ),
+                borderWidth: 1,
+                barPercentage: 0.8,  // Mengatur lebar bar agar tidak terlalu tebal
+                categoryPercentage: 0.9
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 20,
+                    top: 10,
+                    bottom: 10
+                }
             },
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        callbacks: {
-                            label: context => ` ${context.dataset.label}: ${context.raw}%`
-                        }
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: context => ` ${context.dataset.label}: ${context.raw}%`
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'Persentase (%)' },
+                    ticks: {
+                        font: {
+                            size: 14
+                        },
+                        stepSize: 5,
+                        maxTicksLimit: 10
                     }
                 },
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        title: { display: true, text: 'Persentase (%)' }
-                    },
-                    y: {
-                        ticks: {
-                            autoSkip: false,
-                            font: { size: 14 },  // Perbesar ukuran font label provinsi
-                            maxRotation: 0,
-                            minRotation: 0,
-                            callback: function(value) {
-                                // Membatasi panjang label agar tidak terlalu panjang
-                                const label = this.getLabelForValue(value);
-                                if (label.length > 20) {
-                                    return label.substring(0, 17) + '...';
-                                }
-                                return label;
+                y: {
+                    ticks: {
+                        autoSkip: false,
+                        font: { size: 14, weight: 'bold' },  // Perbesar dan tebalkan font label
+                        maxRotation: 0,
+                        minRotation: 0,
+                        padding: 5,
+                        callback: function(value) {
+                            const label = this.getLabelForValue(value);
+                            if (label.length > 20) {
+                                return label.substring(0, 17) + '...';
                             }
+                            return label;
                         }
                     }
                 }
             }
-        });
-    }
+        }
+    });
+}
+
 
     function updateChartData(sortedData) {
         provincialChart.data.labels = sortedData.map(d => d.province);
