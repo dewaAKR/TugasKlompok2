@@ -70,9 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
             layout: {
                 padding: {
                     left: 15,
-                    right: 20,
-                    top: 250,
-                    bottom: 200
+                    right: 25,
+                    top: 7,
+                    bottom: 7
                 }
             },
             plugins: {
